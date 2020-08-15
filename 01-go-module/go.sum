@@ -1,2 +1,4 @@
 github.com/go-training/workshop-20200817 v0.0.0-20200815042659-67bb8cbd042b h1:3aORhMnLHOJ0zpE5Em/3LZnUfHugHXjnYjip2aU922M=
 github.com/go-training/workshop-20200817 v0.0.0-20200815042659-67bb8cbd042b/go.mod h1:+nz2tR/JmAPzQpPk4P/SWlbA7vrP5M0lJ7tLEYyAx+4=
+github.com/joho/godotenv v1.3.0 h1:Zjp+RcGpHhGlrMbJzXTrZZPrWj+1vfm90La1wgB6Bhc=
+github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
