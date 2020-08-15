@@ -12,10 +12,13 @@ func main() {
 func foo01() {
 	var foo [3]int
 	var bar []int
+	test := []int{}
 
 	if bar == nil {
-		fmt.Printf("%p\n", foo)
+		fmt.Printf("%v\n", foo)
+		fmt.Printf("%p\n", &foo)
 		fmt.Printf("%p\n", bar)
+		fmt.Printf("%p\n", test)
 	}
 }
 
