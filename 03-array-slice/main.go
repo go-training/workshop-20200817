@@ -7,6 +7,9 @@ func main() {
 	foo02()
 	foo03()
 	foo04()
+
+	calc(1, 2)
+	calc([]int{1, 2, 3, 4}...)
 }
 
 func foo01() {
@@ -52,4 +55,11 @@ func foo04() {
 		fmt.Println(x)
 	}(x)
 	fmt.Println(x)
+}
+
+func calc(vals ...int) {
+	fmt.Println("array count:", len(vals))
+	for index, val := range vals {
+		fmt.Println(index, ":", val)
+	}
 }
