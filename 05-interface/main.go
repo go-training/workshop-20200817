@@ -26,4 +26,19 @@ func main() {
 	car2 := toyota.New(1000)
 	total := amount(car1, car2)
 	fmt.Println(total)
+
+	ips := map[string]ipv4{
+		"google":    {1, 1, 1, 1},
+		"localhost": {127, 0, 0, 1},
+	}
+
+	for s, v := range ips {
+		fmt.Printf("%v, %v\n", s, v)
+	}
+}
+
+type ipv4 []byte
+
+func (s ipv4) String() string {
+	return fmt.Sprintf("%v.%v.%v.%v", s[0], s[1], s[2], s[3])
 }
