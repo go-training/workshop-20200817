@@ -2,13 +2,43 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
 func main() {
-	example01()
-	example02()
-	example03()
+	// example01()
+	// example02()
+	// example03()
+	example04()
+}
+
+// multiple channel
+func example04() {
+	wg := &sync.WaitGroup{}
+	wg.Add(2)
+	ch1 := make(chan int)
+	ch2 := make(chan int)
+	go func() {
+		ch1 <- 100
+		wg.Done()
+	}()
+	go func() {
+		ch2 <- 200
+		wg.Done()
+	}()
+	for {
+		select {
+		case v := <-ch1:
+			fmt.Println("ch1:", v)
+		case v := <-ch2:
+			fmt.Println("ch2:", v)
+		case <-time.After(5 * time.Second):
+			fmt.Println("timeout")
+		}
+	}
+	wg.Wait()
+	fmt.Println("Done")
 }
 
 // buffer vs unbuffer channel
