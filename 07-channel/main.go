@@ -22,6 +22,7 @@ func example04() {
 	go func() {
 		ch2 <- 200
 	}()
+loop:
 	for {
 		select {
 		case v := <-ch1:
@@ -30,6 +31,7 @@ func example04() {
 			fmt.Println("ch2:", v)
 		case <-time.After(1 * time.Second):
 			fmt.Println("timeout")
+			break loop
 		}
 	}
 }
