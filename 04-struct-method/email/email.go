@@ -8,7 +8,7 @@ type Email struct {
 }
 
 func (e *Email) init() error {
-	if e.Username != "xxx" && e.Password != "xxx" {
+	if e.Username != "foo" && e.Password != "bar" {
 		return errors.New("wrong username and password")
 	}
 
