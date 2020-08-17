@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"test/car"
+	"test/email"
 )
 
 func main() {
@@ -33,5 +35,15 @@ func main() {
 			fmt.Println(car2.Price)
 		}(i)
 	}
+
+	e, err := email.New("foo", "bar")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if err := e.Send("email@gmail.com"); err != nil {
+		log.Fatal(err)
+	}
+
 	time.Sleep(1 * time.Second)
 }

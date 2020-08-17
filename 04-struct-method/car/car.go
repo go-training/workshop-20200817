@@ -1,10 +1,21 @@
 package car
 
+import "time"
+
 // Car ...
 type Car struct {
 	Name  string
 	Price int
 	Color string
+	foo   string
+
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
+
+// GetFoo ...
+func (c *Car) GetFoo() string {
+	return c.foo
 }
 
 // GetName ...
