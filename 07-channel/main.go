@@ -17,10 +17,16 @@ func example04() {
 	ch1 := make(chan int)
 	ch2 := make(chan int)
 	go func() {
-		ch1 <- 100
+		for i := 0; i < 5; i++ {
+			time.Sleep(400 * time.Millisecond)
+			ch1 <- (100 + i)
+		}
 	}()
 	go func() {
-		ch2 <- 200
+		for i := 0; i < 5; i++ {
+			time.Sleep(200 * time.Millisecond)
+			ch2 <- (200 + i)
+		}
 	}()
 loop:
 	for {
