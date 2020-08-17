@@ -6,20 +6,24 @@ import (
 	"time"
 )
 
-func foo(input string) {
+func foo(input string, wg *sync.WaitGroup) {
 	fmt.Println(input)
+	wg.Done()
 }
 
 func main() {
+	wg := &sync.WaitGroup{}
+	wg.Add(2)
 	// one
-	go foo("1")
-	go foo("2")
+	go foo("1", wg)
+	go foo("2", wg)
+	wg.Wait()
 
 	// two
 	msg := "let's go"
-	go func() {
-		fmt.Println(msg)
-	}()
+	go func(m string) {
+		fmt.Println(m)
+	}(msg)
 	msg = "let's gogogo"
 
 	go waitGroup()
@@ -33,12 +37,12 @@ func waitGroup() {
 	mu := &sync.Mutex{}
 	wg.Add(10)
 	for i := 0; i < 10; i++ {
-		go func() {
+		go func(i int) {
 			defer wg.Done()
 			mu.Lock()
 			m[i] = i
 			mu.Unlock()
-		}()
+		}(i)
 	}
 	wg.Wait()
 	fmt.Println("m:", len(m))
