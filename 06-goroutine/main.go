@@ -38,10 +38,12 @@ func waitGroup() {
 	wg.Add(10)
 	for i := 0; i < 10; i++ {
 		go func(i int) {
-			defer wg.Done()
+			// defer wg.Done()
 			mu.Lock()
 			m[i] = i
 			mu.Unlock()
+			time.Sleep(500 * time.Millisecond)
+			wg.Done()
 		}(i)
 	}
 	wg.Wait()
