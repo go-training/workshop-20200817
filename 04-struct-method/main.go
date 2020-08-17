@@ -41,6 +41,10 @@ func main() {
 		log.Fatal(err)
 	}
 
+	if e != nil {
+		log.Printf("%#v\n", e)
+	}
+
 	if err := e.Send("email@gmail.com"); err != nil {
 		log.Fatal(err)
 	}
