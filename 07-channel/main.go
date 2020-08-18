@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	// example01()
+	example01()
 	// example02()
 	// example03()
-	example04()
+	// example04()
 }
 
 // multiple channel
@@ -54,21 +54,23 @@ func example03() {
 }
 
 func example01() {
-	c := make(chan string)
+	c := make(chan string, 10)
 	go foobar("example01", c)
 	for {
 		v, ok := <-c
 		if !ok {
 			break
 		}
+		time.Sleep(1 * time.Second)
 		fmt.Println(v)
 	}
 }
 
 func example02() {
-	c := make(chan string)
+	c := make(chan string, 10)
 	go foobar("example02", c)
 	for v := range c {
+		time.Sleep(1 * time.Second)
 		fmt.Println(v)
 	}
 }
@@ -76,7 +78,7 @@ func example02() {
 func foobar(v string, c chan string) {
 	for i := 1; i <= 5; i++ {
 		c <- v
-		time.Sleep(500 * time.Millisecond)
 	}
+	fmt.Println("close the channel")
 	close(c)
 }
